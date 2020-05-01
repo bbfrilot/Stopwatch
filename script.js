@@ -1,27 +1,29 @@
-const stopWatch = document.querySelector("#stopwatch");
+const stopWatch = document.getElementById("stopWatch");
+let timer = 0;
+let interval;
 
-//stopWatch.innerText = timer; 
+function displaySeconds() {
+  stopWatch.innerText = timer
 
- //let timer = parseInt(0); 
+}
+ 
+  const startButton = document.getElementById('start')
+  startButton.onclick = function() {
+    startButton.setAttribute('disabled', true)
+    interval = setInterval(function() {
+    timer++
+    displaySeconds()
+  }, 1000);
 
-  
+  }
+  document.getElementById('stop').onclick = function() {
+    clearInterval(interval)
+    startButton.removeAttribute('disabled')
+    }
 
-var timer = 0;
+    document.getElementById('reset').onclick = function() {
+      timer=0
+      displaySeconds()
+    }
 
-let seconds = Math.floor (timer % 60) 
-let minutes = Math.floor (timer % 3600/60);       
-let hours = Math.floor (timer/3600);                         
-
-
-
-
-const start = document.querySelector(".start");
-start.addEventListener("click", function(){ 
-  alert("started"); });  //just for test//
-const stop = document.querySelector(".stop");
-stop.addEventListener("click", function(){
-  alert("stopped"); }); //just for test//
-const reset = document.querySelector(".reset");
-reset.addEventListener("click", function(){
-  alert("i am reset"); }); //just for test//
 
